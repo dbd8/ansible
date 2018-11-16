@@ -1,0 +1,24 @@
+---
+- hosts: all
+
+  become: yes
+
+  tasks:
+
+  - name: reboot
+    command: /sbin/shutdown -r
+
+  - name: Wait 300 seconds, but only start checking after 60 seconds
+    wait_for_connection:
+     connect_timeout: 10
+     delay: 5
+     sleep: 5
+     timeout: 300
+
+  - name: kernel
+    shell: uname -r
+    register: uname_result
+
+  - name: kernel
+    debug:
+      msg: "kernel is {{ uname_result.stdout }}"
