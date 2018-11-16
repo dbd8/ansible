@@ -1,0 +1,6 @@
+---
+- hosts: all
+
+
+  - name: reboot host
+    reboot:
