@@ -5,3 +5,11 @@
 
   - name: ping
     ping:
+
+  - name: kernel
+    shell: uname -r
+    register: uname_result
+
+  - name: kernel
+    debug:
+      msg: "kernel is {{ uname_result.stdout }}"
